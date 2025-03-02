@@ -1,0 +1,90 @@
+#Install and load packages
+install.packages('tidyverse')  #Helps with consistent formatting
+library(tidyverse)
+install.packages('here')  #Referencing files 
+library(here)
+install.packages('skimr')  #Summarizing data 
+library(skimr)
+install.packages('janitor')  #Cleaning data
+library(janitor)
+install.packages ('dplyr')  #Data manipulation and transformation
+library(dplyr)
+
+#Install and load readr for CSV files
+install.packages('readr')
+library (readr)
+
+#Load Daily Activity CSV file
+daily_activity <- read_csv("C:\\Users\\ocbar\\Documents\\Google data analytics\\Capstone study\\mturkfitbit_export_4.12.16-5.12.16\\Fitabase Data 4.12.16-5.12.16\\dailyActivity_merged.csv")
+View(daily_activity)
+#Load Sleep Day CSV file
+sleep_day <- read_csv("C:\\Users\\ocbar\\Documents\\Google data analytics\\Capstone study\\mturkfitbit_export_4.12.16-5.12.16\\Fitabase Data 4.12.16-5.12.16\\sleepDay_merged.csv")
+View(sleep_day)
+#Load Weight Info CSV file
+weight_info <- read_csv("C:\\Users\\ocbar\\Documents\\Google data analytics\\Capstone study\\mturkfitbit_export_4.12.16-5.12.16\\Fitabase Data 4.12.16-5.12.16\\weightLogInfo_merged.csv")
+View(weight_info)
+#Load Heart Rate CSV file
+heart_rate <- read_csv("C:\\Users\\ocbar\\Documents\\Google data analytics\\Capstone study\\mturkfitbit_export_4.12.16-5.12.16\\Fitabase Data 4.12.16-5.12.16\\heartrate_seconds_merged.csv")
+View(heart_rate)
+
+#Rename various columns 
+heart_rate %>%
+  rename (BPM=Value)
+
+daily_activity %>%
+  rename (Daily_calory_intake=Calories)
+
+daily_activity %>%
+  rename (Day=ActivityDate)
+
+sleep_day %>%
+  rename (Day=SleepDay)
+
+weight_info %>%
+  rename (Day=Date)
+
+#Exploring a few tables within Daily_Activity data frame
+head(daily_activity) #First few rows of data
+colnames(daily_activity) #Identify all columns
+n_distinct(daily_activity$Id) #How many participants 
+nrow(daily_activity) #How many observations
+
+#Exploring a few tables within Sleep_Day data frame
+head(sleep_day)
+colnames(sleep_day) 
+n_distinct(sleep_day$Id) 
+nrow(sleep_day) 
+
+#Exploring a few tables within Weight_Info data frame
+head(weight_info)
+colnames(weight_info)
+n_distinct(weight_info$Id)
+nrow(weight_info)
+
+#Exploring a few tables within Heart_Rate data frame
+head(heart_rate)
+colnames(heart_rate)
+n_distinct(heart_rate$Id)
+nrow(heart_rate)
+
+#Check for duplicte values
+combined_data <- list(daily_activity, sleep_day, weight_info,heart_rate) 
+!duplicated(combined_data)
+sum(is.na(combined_data))    
+
+#Summary statistics
+summary_data <- bind_rows(daily_activity, sleep_day, weight_info, heart_rate)
+summary(summary_data)
+
+summary_data %>%
+  select(TotalSteps,TotalDistance,VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance,SedentaryMinutes, Calories, TotalMinutesAsleep, WeightKg, BMI, Value) %>%
+  summary()
+
+#Data visualizations
+Data1 <- merge(sleep_day, daily_activity, by="Id")
+
+# What's the relationship between steps taken in a day and daily calorie intake?
+ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
+
+# What's the relationship between minutes asleep and sedentary minutes?
+ggplot(data=Data1, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + geom_point()
