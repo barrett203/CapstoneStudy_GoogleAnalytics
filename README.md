@@ -53,6 +53,17 @@ FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashni
 
 * Since the data was collected through a survey, the results may not be accurate as such participants may not provide honest and accurate answers.
 
+# Process
+
+## Choosing Data Files
+
+As `dailyActivity_merged.csv ` provides a good summary of steps and calories burned and the `sleepDay_merged.csv` file provides sleep data, these are good overall files to use to analyze patricipant usage. In addition, fitness devices are generally used to track overall health, weight and stress. Therefore, the file `weightLogInfo_merged.csv` containing weight data will be used, as well as the `heartrate_seconds_merged.csv` file.
+
+## Applications
+Excel will be used to load the data and initially look for any issues. R will then be used to transform and explore the data.
+
+
+
 
 
 
