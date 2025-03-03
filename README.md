@@ -43,7 +43,7 @@ Analyze non-Bellabeat smart device data and compare with one Bellabeat product t
 
 ### Data source: 
 
-FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashnic/fitbit) in 18 CSV files. The data contains smart health data from personal fitness trackers for thirty fitbit users. The data was collected via a survey of personal tracker data, including minute-level output for physical activity, hear rate, and sleep monitoring, through Amazon Mechanical Turk between March 12, 2016 and May 12, 2016. It was updated one year ago, approximately March 2024. The data includes information about daily activity, steps, and heart rate. 
+FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashnic/fitbit) in 18 CSV files. The data contains smart health data from personal fitness trackers for thirty fitbit users. The data was collected via a survey of personal tracker data, including minute-level output for physical activity, hear rate, and sleep monitoring, through Amazon Mechanical Turk between March 12, 2016 and May 12, 2016. It was updated one year ago, approximately March 2024. The data includes information about daily activity, steps, and heart rate. The data dictionary can be found [here](https://www.kaggle.com/datasets/arashnic/fitbit/discussion/281341).
 
 ### Limitations: 
 
