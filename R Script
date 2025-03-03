@@ -9,7 +9,7 @@ install.packages('janitor')  #Cleaning data
 library(janitor)
 install.packages ('dplyr')  #Data manipulation and transformation
 library(dplyr)
-install.packages ("openxlsx")
+install.packages ("openxlsx")  #Export code to excel file 
 library (openxlsx)
 
 #Install and load readr for CSV files
