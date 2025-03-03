@@ -9,6 +9,8 @@ install.packages('janitor')  #Cleaning data
 library(janitor)
 install.packages ('dplyr')  #Data manipulation and transformation
 library(dplyr)
+install.packages ("openxlsx")
+library (openxlsx)
 
 #Install and load readr for CSV files
 install.packages('readr')
@@ -27,58 +29,70 @@ View(weight_info)
 heart_rate <- read_csv("C:\\Users\\ocbar\\Documents\\Google data analytics\\Capstone study\\mturkfitbit_export_4.12.16-5.12.16\\Fitabase Data 4.12.16-5.12.16\\heartrate_seconds_merged.csv")
 View(heart_rate)
 
+daily_activity <-daily_activity %>%
+  mutate_at(vars(Id), as.character) %>%
+  mutate_at(vars(ActivityDate), as.Date, format = "%m/%d/%y") %>%
+  rename("Day"="ActivityDate") 
+
+sleep_day <-sleep_day %>%
+  mutate_at(vars(Id), as.character) %>%
+  mutate_at(vars(SleepDay), as.Date, format = "%m/%d/%y") %>%
+  rename("Day"="SleepDay")
+
+weight_info <-weight_info %>%
+  mutate_at(vars(Id,LogId), as.character) %>%
+  mutate_at(vars(Date),as.Date, format = "%m/%d/%y") %>%
+  rename("Day"="Date")
+
+heart_rate <-heart_rate %>%
+  mutate_at(vars(Id), as.character) %>%
+  mutate_at(vars(Time), as.Date, format = "%m/%d/%y") %>%
+  rename("Day"="Time") 
+
 #Rename various columns 
 heart_rate %>%
   rename (BPM=Value)
 
 daily_activity %>%
-  rename (Daily_calories_burned=Calories)
+  rename (Daily_calory_intake=Calories)
 
-daily_activity %>%
-  rename (Day=ActivityDate)
-
-sleep_day %>%
-  rename (Day=SleepDay)
-
-weight_info %>%
-  rename (Day=Date)
-
-#Exploring a few tables within Daily_Activity data frame
+#Exploring a few tables within Daily Activity data frame
 head(daily_activity) #First few rows of data
 colnames(daily_activity) #Identify all columns
 n_distinct(daily_activity$Id) #How many participants 
 nrow(daily_activity) #How many observations
 
-#Exploring a few tables within Sleep_Day data frame
+#Exploring a few tables within Sleep Day data frame
 head(sleep_day)
 colnames(sleep_day) 
 n_distinct(sleep_day$Id) 
 nrow(sleep_day) 
 
-#Exploring a few tables within Weight_Info data frame
+#Exploring a few tables within Weight Info data frame
 head(weight_info)
 colnames(weight_info)
 n_distinct(weight_info$Id)
 nrow(weight_info)
 
-#Exploring a few tables within Heart_Rate data frame
+#Exploring a few tables within Heart Rate data frame
 head(heart_rate)
 colnames(heart_rate)
 n_distinct(heart_rate$Id)
 nrow(heart_rate)
 
-#Check for duplicte values
-combined_data <- list(daily_activity, sleep_day, weight_info,heart_rate) 
-!duplicated(combined_data)
-sum(is.na(combined_data))    
+# Combine data frames; add day of the week 
+summary_data <-sleep_day %>%
+  full_join(daily_activity, by=c("Id","Day")) %>%
+  full_join(weight_info, by=c("Id", "Day")) %>%
+  mutate(Weekday = weekdays(as.Date(Day, "m/%d/%Y")))
 
-#Summary statistics
-summary_data <- bind_rows(daily_activity, sleep_day, weight_info, heart_rate)
-summary(summary_data)
+# Find and remove duplicate rows; count NAs and distinct Ids
+summary_data <-summary_data[!duplicated(summary_data), ]
+sum(is.na(summary_data))
+n_distinct(summary_data$Id)
 
-summary_data %>%
-  select(TotalSteps,TotalDistance,VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance,SedentaryMinutes, Calories, TotalMinutesAsleep, WeightKg, BMI, Value) %>%
-  summary()
+# Order the days of the week
+summary_data$Weekday <-factor(summary_data$Weekday, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
 
 #Data visualizations
 Data1 <- merge(sleep_day, daily_activity, by="Id")
@@ -88,3 +102,12 @@ ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
 
 # What's the relationship between minutes asleep and sedentary minutes?
 ggplot(data=Data1, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + geom_point()
+
+final_data <- bind_rows(daily_activity, sleep_day, weight_info, heart_rate)
+summary(final_data)
+
+final_data %>%
+  select(TotalSteps,TotalDistance,VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance,SedentaryMinutes, Calories, TotalMinutesAsleep, WeightKg, BMI, Value) %>%
+  summary()
+
+write.xlsx(summary_data, "Fitbit_summary_data.xlsx")
