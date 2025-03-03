@@ -1,7 +1,7 @@
 # How can a wellness technology company play it smart?
 ## A Bellabeat data analysis case study
 
-<img align="right" width="450" height="425" src="https://repository-images.githubusercontent.com/522069892/740a3949-ac89-4392-b167-194a026604ed">
+<img align="right" width="450" height="425" src="https://www.the360mag.com/wp-content/uploads/2022/01/SquareQuick_202212112384703.jpg">
 
 [Bellabeat]( https://bellabeat.com/) is a high tech manufacturer of health-related products for women. They have a range of products including water bottles, as well as fashionable jewllery and watches. Each of these products collect data that can be accessed on the Bellabeat app. This was released in 2014 for the company's first wearable tracker, Leaf, which measured step-based movement, as well as sleep cycles, hydration and stress. In 2016 the app features were expanded to include guided meditations and breathing exercises. Additionally, in 2018 Bellabeat expanded its catalog with the Period Diary app. This is essentially a menstrual cycle tracking app that allows women to track the length of their mentral cycle, period duration and symptoms. 
 
@@ -150,7 +150,7 @@ The logged feature was not used too often as there were many blanks in the data 
 
 * Many users did not use the Logged Distance feature on the FitBit devices. This suggests that users would prefer to have their data collected automatically. The Bellabeat marketing team can decide not to a feature activity distance log function as many users seem to not use this.
 
-* Compared to the data set size, there were very few entries for weight. Of those that were entered, about 2/3 were done manually. The individuals who did not log their weight may not have been concerned with losing weight or did not have the device needed to automatically record this data. Since many did not use the logged distance feature as well, the Bellabeat team could market weight devices like smart scales that automatically record this information.
+* Compared to the data set size, there were very few entries for weight.The individuals who did not log their weight may not have been concerned with losing weight or did not have the device needed to automatically record this data. The Bellabeat team could market weight devices like smart scales that automatically record this information.
 
 
 
