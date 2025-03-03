@@ -61,7 +61,7 @@ FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashni
 As `dailyActivity_merged.csv ` provides a good summary of steps and calories burned and the `sleepDay_merged.csv` file provides sleep data, these are good overall files to use to analyze patricipant usage. In addition, fitness devices are generally used to track overall health, weight and stress. Therefore, the file `weightLogInfo_merged.csv` containing weight data will be used, as well as the `heartrate_seconds_merged.csv` file.
 
 ## Applications
-Excel will be used to load the data and initially look for any issues. R will then be used to transform and explore the data.
+Excel will be used to load the data and initially look for any issues. R will then be used to transform and explore the data, followed by Tableau Public to create data visualisations. 
 
 ## Initial Pass Through 
 
@@ -131,13 +131,33 @@ No correlation was found between minutes asleep and sedentary minutes.
 # What's the relationship between steps taken in a day and daily calories burned?
 ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
 ```
-![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Total_Steps%20and%20Calories.png "Summary Statistics")
+![Steps by day](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Total_Steps%20and%20Calories.png "Steps by day")
 
 As to be expected, a positive correlation was found between steps taken in a day and daily calories burned.
 
 ![Steps by Day](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Steps%20taken%20by%20day.png "Steps by Day")
 
 Users took the most steps on Sundays and the least number of steps on Fridays. As all the values are fairly high, the marketing team can conclude that users value the step feature of health fitness devices. They could also assume that the feature will be very useful for Bellabeat customers. 
+
+
+![Logged activity](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Logged%20activity%20by%20day.png "Logged activity")
+
+The logged feature was not used too often as there were many blanks in the data and no records were available  for Thursday and Friday. The highest days of logged distance were on the weekend or times when many people likely have free time to do physical activities. 
+
+## Act
+
+* The number of steps users took was the least on Friday which may be due to user becoming tired at the end of the week. As this is not limited to only FitBit customers, the marketing team could send notifications to users Thursday evenings and Friday and Saturday mornings encouraging users to continue being physical active throughout the day.
+
+* Many users did not use the Logged Distance feature on the FitBit devices. This suggests that users would prefer to have their data collected automatically. The Bellabeat marketing team can decide not to a feature activity distance log function as many users seem to not use this.
+
+* Compared to the data set size, there were very few entries for weight. Of those that were entered, about 2/3 were done manually. The individuals who did not log their weight may not have been concerned with losing weight or did not have the device needed to automatically record this data. Since many did not use the logged distance feature as well, the Bellabeat team could market weight devices like smart scales that automatically record this information.
+
+
+
+
+
+
+
 
 
 
