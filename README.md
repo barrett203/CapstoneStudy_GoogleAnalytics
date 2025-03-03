@@ -125,6 +125,15 @@ ggplot(data=Data1, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + geom_point()
 ```
 ![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/TotalMinutes_Asleep%20and%20Sedentary_Minutes.png "Summary Statistics")
 
+No correlation was found between minutes asleep and sedentary minutes. 
+
+```
+# What's the relationship between steps taken in a day and daily calories burned?
+ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
+```
+![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Total_Steps%20and%20Calories.png "Summary Statistics")
+
+As to be expected, a positive correlation was found between steps taken in a day and daily calories burned.
 
 
 
