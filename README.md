@@ -106,6 +106,20 @@ n_distinct(summary_data$Id)
 
 The final data frame has 940 variables with 25 variables. There are 33 distinct Id entries total. The number of distinct users in dailyActivity, sleepDay, and weightLogInfo are 33, 24, and 8, respectively. There are 6893 NAs in the combined data.
 
+# Analyze 
+
+## Select summary statistics and visualizations 
+
+```
+final_data %>%
+  select(TotalSteps,TotalDistance,VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance,SedentaryMinutes, Calories, TotalMinutesAsleep, WeightKg, BMI, Value) %>%
+  summary()
+```
+![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Summary%20statistics.png "Summary Statistics")
+
+The average user weighs 72.04 kg, has a BMI of 25.19, and spent the most time doing light activities. On average, they also slept 6.9 hours, took 7638 steps, and traveled 5.49 km per day. 
+
+
    
 
 
