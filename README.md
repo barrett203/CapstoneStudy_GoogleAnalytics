@@ -47,11 +47,12 @@ FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashni
 
 ### Limitations: 
 
-* The sample size is small as only 30 individuals were considered, making it difficult to extrapolate results to a wider population.
+* The sample size is small as 33 individuals were considered, making it difficult to extrapolate results to a wider population.
 
-* The data is about six years old; the FitBit devices have likely evolved to deliver more accurate results. 
+* The data is about nine years old; the FitBit devices have likely evolved to deliver more accurate results. 
 
 * Since the data was collected through a survey, the results may not be accurate as such participants may not provide honest and accurate answers.
+* There are some significant gaps in the data. For instance, data relating to weight only has information from eight users
 
 # Process
 
@@ -61,6 +62,52 @@ As `dailyActivity_merged.csv ` provides a good summary of steps and calories bur
 
 ## Applications
 Excel will be used to load the data and initially look for any issues. R will then be used to transform and explore the data.
+
+## Initial Pass Through 
+
+1) Make sure there are no blank entries in the data by using filters.
+2) Convert Id field to text data type as no numerical equations are needed for this field. 
+3) Convert ActivityDate from Datetime to Date types as no times are given in the data. 
+4) In the `weightLogInfo_merged` file, there are only two entries for the Fat field so this will not be used to draw insights.
+
+## Transform and Explore 
+All R code can be found [here](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/R%20Script).
+
+1) Load the tidyverse package and data files 
+2) Check to see if the data has been loaded correctly
+3) Convert the Id field to character data type 
+4) Rename ActivityDate, SleepDay, and Date to convert to date data type 
+
+```
+activity <-activity %>%
+  mutate_at(vars(Id), as.character) %>%
+  mutate_at(vars(ActivityDate), as.Date, format = "%m/%d/%y") %>%
+  rename("Day"="ActivityDate") 
+```
+  
+  
+5) Combine data frames using full joins
+6) Add day of the week variable 
+
+```
+summary_data <-sleep_day %>%
+  full_join(daily_activity, by=c("Id","Day")) %>%
+  full_join(weight_info, by=c("Id", "Day")) %>%
+  mutate(Weekday = weekdays(as.Date(Day, "m/%d/%Y")))
+```
+
+7) Filter and remove duplicate rows; count NAs and distinct entries using Id
+
+```
+summary_data <-summary_data[!duplicated(summary_data), ]
+sum(is.na(summary_data))
+n_distinct(summary_data$Id)
+```
+
+The final data frame has 940 variables with 25 variables. There are 33 distinct Id entries total. The number of distinct users in dailyActivity, sleepDay, and weightLogInfo are 33, 24, and 8, respectively. There are 6893 NAs in the combined data.
+
+   
+
 
 
 
