@@ -135,7 +135,10 @@ ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
 
 As to be expected, a positive correlation was found between steps taken in a day and daily calories burned.
 
-![Steps by Day]( "Steps by Day")
+![Steps by Day](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Steps%20taken%20by%20day.png "Steps by Day")
+
+Users took the most steps on Sundays and the least number of steps on Fridays. As all the values are fairly high, the marketing team can conclude that users value the step feature of health fitness devices. They could also assume that the feature will be very useful for Bellabeat customers. 
+
 
 
 
