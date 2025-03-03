@@ -119,8 +119,11 @@ final_data %>%
 
 The average user weighs 72.04 kg, has a BMI of 25.19, and spent the most time doing light activities. On average, they also slept 6.9 hours, took 7638 steps, and traveled 5.49 km per day. 
 
-
-   
+```
+# What's the relationship between minutes asleep and sedentary minutes?
+ggplot(data=Data1, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + geom_point()
+```
+![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/TotalMinutes_Asleep%20and%20Sedentary_Minutes.png "Summary Statistics")
 
 
 
