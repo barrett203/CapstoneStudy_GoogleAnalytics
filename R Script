@@ -32,7 +32,7 @@ heart_rate %>%
   rename (BPM=Value)
 
 daily_activity %>%
-  rename (Daily_calory_intake=Calories)
+  rename (Daily_calories_burned=Calories)
 
 daily_activity %>%
   rename (Day=ActivityDate)
