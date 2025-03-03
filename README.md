@@ -117,7 +117,7 @@ final_data %>%
 ```
 ![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Summary%20statistics.png "Summary Statistics")
 
-The average user weighs 72.04 kg, has a BMI of 25.19, and spent the most time doing light activities. On average, they also slept 6.9 hours, took 7638 steps, and traveled 5.49 km per day. 
+The average user weighs 72.04 kg, has a BMI of 25.19, has a heart rate of 77.33 BPM and spent the most time doing light activities. On average, they also slept 6.9 hours, took 7638 steps, and traveled 5.49 km per day. 
 
 ```
 # What's the relationship between minutes asleep and sedentary minutes?
@@ -134,6 +134,8 @@ ggplot(data=daily_activity, aes(x=TotalSteps, y=Calories)) + geom_point()
 ![Summary Statistics](https://github.com/barrett203/CapstoneStudy_GoogleAnalytics/blob/main/Total_Steps%20and%20Calories.png "Summary Statistics")
 
 As to be expected, a positive correlation was found between steps taken in a day and daily calories burned.
+
+![Steps by Day]( "Steps by Day")
 
 
 
