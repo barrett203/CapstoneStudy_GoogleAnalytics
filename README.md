@@ -54,7 +54,7 @@ FitBit Fitness Tracker Data on [Kaggle]( https://www.kaggle.com/datasets/arashni
 * Since the data was collected through a survey, the results may not be accurate as such participants may not provide honest and accurate answers.
 * There are some significant gaps in the data. For instance, data relating to weight only has information from eight users
 
-# Process
+## Process
 
 ## Choosing Data Files
 
@@ -106,7 +106,7 @@ n_distinct(summary_data$Id)
 
 The final data frame has 940 variables with 25 variables. There are 33 distinct Id entries total. The number of distinct users in dailyActivity, sleepDay, and weightLogInfo are 33, 24, and 8, respectively. There are 6893 NAs in the combined data.
 
-# Analyze 
+## Analyze 
 
 ## Select summary statistics and visualizations 
 
